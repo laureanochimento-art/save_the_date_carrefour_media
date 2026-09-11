@@ -5,13 +5,293 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Save the Date | Carrefour Media</title>
   
+  <!-- Fuente Google Fonts Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- Estilos (puedes mover esto a un styles.css si también quieres separar el CSS) -->
+
   <style>
-    /* ... PEGA AQUÍ TODO EL CSS ANTERIOR ... */
+    /* --- RESET Y VARIABLES --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      /* Fondo degradado inspirado en el Key Visual */
+      background: radial-gradient(circle at 75% 30%, #0072ff 0%, #a80077 45%, #2a0845 85%);
+      background-size: 200% 200%;
+      animation: gradientBG 10s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      color: #ffffff;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* --- CONTENEDOR TIPO TICKET / TARJETA --- */
+    .card-container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      width: 100%;
+      max-width: 520px;
+      min-height: 680px; /* Alto incrementado para acomodar los nuevos campos */
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    /* --- PASOS DE NAVEGACIÓN --- */
+    .step {
+      width: 100%;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: absolute;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #step-1 {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    #step-2 {
+      opacity: 0;
+      transform: translateX(100%);
+      pointer-events: none;
+    }
+
+    /* Transición al activar formulario */
+    .card-container.show-form #step-1 {
+      opacity: 0;
+      transform: translateX(-100%);
+      pointer-events: none;
+    }
+
+    .card-container.show-form #step-2 {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    /* --- PANTALLA 1: SAVE THE DATE --- */
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      animation: fadeInDown 0.8s ease forwards;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 35px;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+      opacity: 0;
+    }
+
+    /* Botón Principal */
+    .btn {
+      background: #ffffff;
+      color: #0b1a30;
+      border: none;
+      padding: 16px 36px;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      animation: pulse 2.5s infinite, fadeInUp 0.8s ease 0.6s forwards;
+      opacity: 0;
+    }
+
+    .btn:hover {
+      background: #f0f0f0;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35);
+    }
+
+    /* Logo Carrefour Media (Imagen) */
+    .brand-logo {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.8s forwards;
+    }
+
+    .brand-logo img {
+      max-width: 150px;
+      height: auto;
+    }
+
+    /* --- PANTALLA 2: FORMULARIO --- */
+    .form-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .form-sub {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      text-align: left;
+      width: 100%;
+      margin-bottom: 12px; /* Reducido levemente para que entre todo bien */
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Estilos unificados para input y select */
+    .form-group input, 
+    .form-group select {
+      width: 100%;
+      padding: 10px 14px; /* Padding ligeramente ajustado */
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      color: #fff;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-group select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      color: #0b1a30; /* Letras oscuras para las opciones en el desplegable */
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-submit {
+      animation: none;
+      opacity: 1;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: #fff;
+    }
+
+    /* Mensaje de confirmación */
+    #success-message {
+      display: none;
+      padding: 20px 0;
+    }
+
+    /* --- KEYFRAMES --- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
   </style>
 
   <!-- Script separado con defer para que cargue después del HTML -->
@@ -27,9 +307,9 @@
       <h1 class="title">Retail Media<br>Summit</h1>
       <p class="subtitle">Conectando marcas con audiencias reales.</p>
 
-      <!-- Botón sin onclick -->
       <button type="button" class="btn" id="btn-next">Inscribirme ahora</button>
 
+      <!-- Identidad Carrefour Media Actualizada -->
       <div class="brand-logo">
         <img src="crf_rm.png" alt="Logo Carrefour Media">
       </div>
@@ -40,7 +320,6 @@
       <h2 class="form-title">Reserva tu lugar</h2>
       <p class="form-sub">Completa los datos para confirmar tu asistencia</p>
 
-      <!-- Formulario sin onsubmit -->
       <form id="rsvp-form" style="width: 100%;">
         <div class="form-group">
           <label for="nombre">Nombre y Apellido</label>
@@ -57,20 +336,23 @@
           <input type="email" id="email" required placeholder="ana@empresa.com">
         </div>
 
+        <!-- Campo DNI -->
         <div class="form-group">
           <label for="dni">DNI</label>
           <input type="text" id="dni" required placeholder="Ej. 12345678">
         </div>
 
+        <!-- Menú Desplegable Restricciones Alimenticias -->
         <div class="form-group">
           <label for="dieta">Restricciones Alimenticias</label>
           <select id="dieta" required>
             <option value="" disabled selected>Selecciona una opción</option>
-            <option value="ninguna">Ninguna</option>
-            <option value="vegetariano">Vegetariano/a</option>
-            <option value="vegano">Vegano/a</option>
-            <option value="celiaco">Celíaco/a (Sin TACC)</option>
-            <option value="otro">Otro</option>
+            <option value="Ninguna">Ninguna</option>
+            <option value="Vegetariano/a">Vegetariano/a</option>
+            <option value="Vegano/a">Vegano/a</option>
+            <!-- Valor exacto sin acento para coincidir con Google Forms -->
+            <option value="Celiaco/a (Sin TACC)">Celiaco/a (Sin TACC)</option>
+            <option value="Otro">Otro</option>
           </select>
         </div>
 
@@ -85,7 +367,6 @@
         </p>
       </div>
 
-      <!-- Enlace sin onclick -->
       <span class="back-link" id="btn-prev">← Volver a la invitación</span>
     </div>
 
