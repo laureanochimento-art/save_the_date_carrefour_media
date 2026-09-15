@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Referencias al DOM
     const card = document.getElementById('card');
+    const step2 = document.getElementById('step-2'); // Agregamos la referencia al contenedor del paso 2
     const btnNext = document.getElementById('btn-next');
     const btnPrev = document.getElementById('btn-prev');
     const rsvpForm = document.getElementById('rsvp-form');
-    const successMessage = document.getElementById('success-message');
     const btnSubmit = document.getElementById('btn-submit');
 
     // Lógica de Navegación (Fronting)
@@ -47,12 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
             body: formData.toString()
         })
         .then(() => {
-            // Como estamos en 'no-cors', la promesa siempre se resuelve exitosa si se envía la red.
-            // Ocultamos formulario y mostramos éxito.
-            rsvpForm.style.display = 'none';
-            successMessage.style.display = 'block';
+            // Como estamos en 'no-cors', la promesa siempre se resuelve exitosa si se envía a la red.
             
-            // Ocultar botón de volver (para que no vuelva al form vacío)
+            // Aplicamos la clase CSS para ocultar títulos, el form y mostrar el mensaje final
+            step2.classList.add('success-mode');
+            
+            // Ocultar botón de volver (para que el usuario no vuelva al form vacío)
             btnPrev.style.display = 'none';
         })
         .catch((error) => {
