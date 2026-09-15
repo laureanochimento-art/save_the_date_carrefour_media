@@ -20,7 +20,6 @@
     }
 
     body {
-      /* Fondo degradado inspirado en el Key Visual */
       background: radial-gradient(circle at 75% 30%, #0072ff 0%, #a80077 45%, #2a0845 85%);
       background-size: 200% 200%;
       animation: gradientBG 10s ease infinite;
@@ -83,7 +82,6 @@
       pointer-events: none;
     }
 
-    /* Transición al activar formulario */
     .card-container.show-form #step-1 {
       opacity: 0;
       transform: translateX(-100%);
@@ -133,7 +131,6 @@
       line-height: 1.5;
     }
 
-    /* Botón Principal */
     .btn {
       background: #ffffff;
       color: #0b1a30;
@@ -157,7 +154,6 @@
       box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35);
     }
 
-    /* Logo Carrefour Media (Imagen) */
     .brand-logo {
       margin-top: 40px;
       display: flex;
@@ -202,7 +198,6 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
-    /* Estilos unificados para input y select */
     .form-group input, 
     .form-group select {
       width: 100%;
@@ -259,35 +254,32 @@
       color: #fff;
     }
 
-    /* Mensaje de confirmación */
     #success-message {
-      display: none;
+      display: none; /* Oculto por defecto */
       padding: 20px 0;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    /* --- CLASES DE ESTADO PARA EL ÉXITO --- */
+    /* Cuando se agrega la clase .success-mode al step-2, se oculta el form y se muestra el mensaje */
+    #step-2.success-mode #form-header,
+    #step-2.success-mode #rsvp-form {
+      display: none !important;
+    }
+
+    #step-2.success-mode #success-message {
+      display: block !important;
     }
 
     /* --- KEYFRAMES --- */
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-25px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.03); }
@@ -295,7 +287,6 @@
     }
   </style>
 
-  <!-- Script separado con defer para que cargue después del HTML -->
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -305,27 +296,28 @@
     <!-- PANTALLA 1: RECIBIMIENTO / SAVE THE DATE -->
     <div class="step" id="step-1">
       <span class="badge">Save The Date</span>
-      <h1 class="title">Retail Media<br>Summit</h1>
-      <!-- Se sumó la fecha y la hora aquí -->
-      <p class="subtitle">Conectando marcas con audiencias reales.<br><strong>15/10 - 18hs</strong></p>
+      <!-- Título y Subtítulo Actualizados -->
+      <h1 class="title">Carrefour Media<br>Date</h1>
+      <p class="subtitle">Conectando Marcas con Audiencias Reales.<br><strong>15/10 - 18hs</strong></p>
 
       <button type="button" class="btn" id="btn-next">Inscribirme ahora</button>
 
-      <!-- Identidad Carrefour Media Actualizada -->
       <div class="brand-logo">
         <img src="crf_rm.png" alt="Logo Carrefour Media">
       </div>
     </div>
 
     <!-- PANTALLA 2: FORMULARIO DE INSCRIPCIÓN -->
+    <!-- Nota: para mostrar el éxito, el script.js debe hacer: document.getElementById('step-2').classList.add('success-mode'); -->
     <div class="step" id="step-2">
-      <!-- Se agrupan los títulos para ocultarlos fácilmente al momento del éxito -->
+      
+      <!-- Agrupador de Títulos (Se ocultará con el éxito) -->
       <div id="form-header">
-        <!-- Se sumaron las tildes solicitadas -->
         <h2 class="form-title">Reservá tu lugar</h2>
         <p class="form-sub">Completá los datos para confirmar tu asistencia</p>
       </div>
 
+      <!-- Formulario (Se ocultará con el éxito) -->
       <form id="rsvp-form" style="width: 100%;">
         <div class="form-group">
           <label for="nombre">Nombre y Apellido</label>
@@ -342,13 +334,11 @@
           <input type="email" id="email" required placeholder="ana@empresa.com">
         </div>
 
-        <!-- Campo DNI -->
         <div class="form-group">
           <label for="dni">DNI</label>
           <input type="text" id="dni" required placeholder="Ej. 12345678">
         </div>
 
-        <!-- Menú Desplegable Restricciones Alimenticias -->
         <div class="form-group">
           <label for="dieta">Restricciones Alimenticias</label>
           <select id="dieta" required>
@@ -356,7 +346,6 @@
             <option value="Ninguna">Ninguna</option>
             <option value="Vegetariano/a">Vegetariano/a</option>
             <option value="Vegano/a">Vegano/a</option>
-            <!-- Valor exacto sin acento para coincidir con Google Forms -->
             <option value="Celiaco/a (Sin TACC)">Celiaco/a (Sin TACC)</option>
             <option value="Otro">Otro</option>
           </select>
@@ -365,9 +354,9 @@
         <button type="submit" class="btn btn-submit" id="btn-submit">Confirmar Registro</button>
       </form>
 
-      <!-- Confirmación tras enviar (Actualizada con tu texto) -->
+      <!-- Mensaje de Confirmación (Actualizado y oculto hasta éxito) -->
       <div id="success-message">
-        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">¡Gracias por inscribirte al Carrefour Media Pulse!</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">¡Gracias por inscribirte al Carrefour Media Date!</h3>
         <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
           Te enviaremos un mail cuando confirmemos tu cupo.
         </p>
