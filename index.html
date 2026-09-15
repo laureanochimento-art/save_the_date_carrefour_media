@@ -47,7 +47,7 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
       width: 100%;
       max-width: 520px;
-      min-height: 680px; /* Alto incrementado para acomodar los nuevos campos */
+      min-height: 680px;
       border-radius: 24px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       position: relative;
@@ -130,6 +130,7 @@
       margin-bottom: 35px;
       animation: fadeInUp 0.8s ease 0.4s forwards;
       opacity: 0;
+      line-height: 1.5;
     }
 
     /* Botón Principal */
@@ -188,7 +189,7 @@
     .form-group {
       text-align: left;
       width: 100%;
-      margin-bottom: 12px; /* Reducido levemente para que entre todo bien */
+      margin-bottom: 12px;
     }
 
     .form-group label {
@@ -205,7 +206,7 @@
     .form-group input, 
     .form-group select {
       width: 100%;
-      padding: 10px 14px; /* Padding ligeramente ajustado */
+      padding: 10px 14px;
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 10px;
@@ -223,7 +224,7 @@
     }
 
     .form-group select option {
-      color: #0b1a30; /* Letras oscuras para las opciones en el desplegable */
+      color: #0b1a30; 
     }
 
     .form-group input::placeholder {
@@ -305,7 +306,8 @@
     <div class="step" id="step-1">
       <span class="badge">Save The Date</span>
       <h1 class="title">Retail Media<br>Summit</h1>
-      <p class="subtitle">Conectando marcas con audiencias reales.</p>
+      <!-- Se sumó la fecha y la hora aquí -->
+      <p class="subtitle">Conectando marcas con audiencias reales.<br><strong>15/10 - 18hs</strong></p>
 
       <button type="button" class="btn" id="btn-next">Inscribirme ahora</button>
 
@@ -317,8 +319,12 @@
 
     <!-- PANTALLA 2: FORMULARIO DE INSCRIPCIÓN -->
     <div class="step" id="step-2">
-      <h2 class="form-title">Reserva tu lugar</h2>
-      <p class="form-sub">Completa los datos para confirmar tu asistencia</p>
+      <!-- Se agrupan los títulos para ocultarlos fácilmente al momento del éxito -->
+      <div id="form-header">
+        <!-- Se sumaron las tildes solicitadas -->
+        <h2 class="form-title">Reservá tu lugar</h2>
+        <p class="form-sub">Completá los datos para confirmar tu asistencia</p>
+      </div>
 
       <form id="rsvp-form" style="width: 100%;">
         <div class="form-group">
@@ -359,11 +365,11 @@
         <button type="submit" class="btn btn-submit" id="btn-submit">Confirmar Registro</button>
       </form>
 
-      <!-- Confirmación tras enviar -->
+      <!-- Confirmación tras enviar (Actualizada con tu texto) -->
       <div id="success-message">
-        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">¡Registro Exitoso!</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">¡Gracias por inscribirte al Carrefour Media Pulse!</h3>
         <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
-          Te enviamos la confirmación e itinerario a tu correo.
+          Te enviaremos un mail cuando confirmemos tu cupo.
         </p>
       </div>
 
