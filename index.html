@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Save the Date | Carrefour Media</title>
   
-  <!-- Fuente Google Fonts Montserrat -->
+  <!-- Fuente Google Fonts: Nunito Sans (Alternativa ideal a Proxima Nova) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     /* --- RESET Y VARIABLES --- */
@@ -16,7 +16,8 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Montserrat', sans-serif;
+      /* Primero busca Proxima Nova, si no la encuentra usa Nunito Sans */
+      font-family: 'Proxima Nova', 'Nunito Sans', sans-serif;
     }
 
     body {
@@ -261,7 +262,6 @@
     }
 
     /* --- CLASES DE ESTADO PARA EL ÉXITO --- */
-    /* Cuando se agrega la clase .success-mode al step-2, se oculta el form y se muestra el mensaje */
     #step-2.success-mode #form-header,
     #step-2.success-mode #rsvp-form {
       display: none !important;
@@ -296,7 +296,6 @@
     <!-- PANTALLA 1: RECIBIMIENTO / SAVE THE DATE -->
     <div class="step" id="step-1">
       <span class="badge">Save The Date</span>
-      <!-- Título y Subtítulo Actualizados -->
       <h1 class="title">Carrefour Media<br>Date</h1>
       <p class="subtitle">Conectando Marcas con Audiencias Reales.<br><strong>15/10 - 18hs</strong></p>
 
@@ -308,7 +307,6 @@
     </div>
 
     <!-- PANTALLA 2: FORMULARIO DE INSCRIPCIÓN -->
-    <!-- Nota: para mostrar el éxito, el script.js debe hacer: document.getElementById('step-2').classList.add('success-mode'); -->
     <div class="step" id="step-2">
       
       <!-- Agrupador de Títulos (Se ocultará con el éxito) -->
@@ -354,7 +352,7 @@
         <button type="submit" class="btn btn-submit" id="btn-submit">Confirmar Registro</button>
       </form>
 
-      <!-- Mensaje de Confirmación (Actualizado y oculto hasta éxito) -->
+      <!-- Mensaje de Confirmación -->
       <div id="success-message">
         <h3 style="font-size: 1.5rem; margin-bottom: 10px;">¡Gracias por inscribirte al Carrefour Media Date!</h3>
         <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
