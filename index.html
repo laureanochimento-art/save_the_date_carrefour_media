@@ -113,17 +113,17 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       animation: fadeInUp 0.8s ease 0.1s forwards;
     }
 
     .brand-logo img {
-      max-width: 240px;
+      max-width: 290px; /* Logo más grande */
       height: auto;
     }
 
     .title {
-      font-size: 3.5rem;
+      font-size: 2.8rem; /* Texto DATE más pequeño */
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: 2px;
@@ -255,7 +255,7 @@
 
     #success-message {
       display: none;
-      padding: 20px 0;
+      padding: 10px 0;
       animation: fadeInUp 0.5s ease forwards;
     }
 
@@ -351,8 +351,14 @@
 
       <!-- Mensaje de Confirmación Actualizado -->
       <div id="success-message">
-        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">¡Gracias por inscribirte al Carrefour Media Date!</h3>
-        <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
+        <!-- Réplica de formato de logo + DATE en el agradecimiento -->
+        <div class="brand-logo" style="opacity: 1; animation: none; margin-bottom: 5px;">
+          <img src="crf_rm.png" alt="Logo Carrefour Media">
+        </div>
+        <h1 class="title" style="opacity: 1; animation: none; margin-bottom: 25px;">DATE</h1>
+
+        <h3 style="font-size: 1.5rem; margin-bottom: 12px;">¡Gracias por inscribirte!</h3>
+        <p style="font-size: 0.95rem; color: rgba(255, 255, 255, 0.85); line-height: 1.4;">
           Te enviaremos un mail cuando confirmemos tu cupo. La invitación es personal e intransferible.
         </p>
       </div>
