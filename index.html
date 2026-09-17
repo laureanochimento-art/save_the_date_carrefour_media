@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Save the Date | Carrefour Media</title>
   
-  <!-- Fuente Google Fonts: Nunito Sans (Alternativa ideal a Proxima Nova) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -16,7 +15,6 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      /* Primero busca Proxima Nova, si no la encuentra usa Nunito Sans */
       font-family: 'Proxima Nova', 'Nunito Sans', sans-serif;
     }
 
@@ -98,36 +96,50 @@
     /* --- PANTALLA 1: SAVE THE DATE --- */
     .badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(90, 148, 242, 0.8);
       color: #fff;
-      padding: 6px 18px;
+      padding: 8px 24px;
       border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 700;
+      font-size: 0.85rem;
+      font-weight: 800;
       letter-spacing: 2px;
-      margin-bottom: 25px;
+      margin-bottom: 35px;
       text-transform: uppercase;
       animation: fadeInDown 0.8s ease forwards;
     }
 
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      margin-bottom: 10px;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+    }
+
+    .brand-logo img {
+      max-width: 240px;
+      height: auto;
+    }
+
     .title {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: 2px;
-      margin-bottom: 15px;
+      margin-bottom: 25px;
       text-transform: uppercase;
       text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      animation: fadeInUp 0.8s ease 0.2s forwards;
+      animation: fadeInUp 0.8s ease 0.3s forwards;
       opacity: 0;
     }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 35px;
-      animation: fadeInUp 0.8s ease 0.4s forwards;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease 0.5s forwards;
       opacity: 0;
       line-height: 1.5;
     }
@@ -145,7 +157,7 @@
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
-      animation: pulse 2.5s infinite, fadeInUp 0.8s ease 0.6s forwards;
+      animation: pulse 2.5s infinite, fadeInUp 0.8s ease 0.7s forwards;
       opacity: 0;
     }
 
@@ -153,20 +165,6 @@
       background: #f0f0f0;
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35);
-    }
-
-    .brand-logo {
-      margin-top: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease 0.8s forwards;
-    }
-
-    .brand-logo img {
-      max-width: 150px;
-      height: auto;
     }
 
     /* --- PANTALLA 2: FORMULARIO --- */
@@ -256,7 +254,7 @@
     }
 
     #success-message {
-      display: none; /* Oculto por defecto */
+      display: none;
       padding: 20px 0;
       animation: fadeInUp 0.5s ease forwards;
     }
@@ -295,27 +293,26 @@
     
     <!-- PANTALLA 1: RECIBIMIENTO / SAVE THE DATE -->
     <div class="step" id="step-1">
-      <span class="badge">Save The Date</span>
-      <h1 class="title">Carrefour Media<br>Date</h1>
-      <p class="subtitle">Conectando Marcas con Audiencias Reales.<br><strong>15/10 - 18hs</strong></p>
-
-      <button type="button" class="btn" id="btn-next">Inscribirme ahora</button>
-
+      <span class="badge">SAVE THE DATE</span>
+      
       <div class="brand-logo">
         <img src="crf_rm.png" alt="Logo Carrefour Media">
       </div>
+
+      <h1 class="title">DATE</h1>
+      <p class="subtitle">Conectando Marcas con Audiencias Reales.<br><strong>15/10 - 18hs</strong></p>
+
+      <button type="button" class="btn" id="btn-next">INSCRIBIRME AHORA</button>
     </div>
 
     <!-- PANTALLA 2: FORMULARIO DE INSCRIPCIÓN -->
     <div class="step" id="step-2">
       
-      <!-- Agrupador de Títulos (Se ocultará con el éxito) -->
       <div id="form-header">
         <h2 class="form-title">Reservá tu lugar</h2>
         <p class="form-sub">Completá los datos para confirmar tu asistencia</p>
       </div>
 
-      <!-- Formulario (Se ocultará con el éxito) -->
       <form id="rsvp-form" style="width: 100%;">
         <div class="form-group">
           <label for="nombre">Nombre y Apellido</label>
@@ -352,11 +349,11 @@
         <button type="submit" class="btn btn-submit" id="btn-submit">Confirmar Registro</button>
       </form>
 
-      <!-- Mensaje de Confirmación -->
+      <!-- Mensaje de Confirmación Actualizado -->
       <div id="success-message">
         <h3 style="font-size: 1.5rem; margin-bottom: 10px;">¡Gracias por inscribirte al Carrefour Media Date!</h3>
         <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.8);">
-          Te enviaremos un mail cuando confirmemos tu cupo.
+          Te enviaremos un mail cuando confirmemos tu cupo. La invitación es personal e intransferible.
         </p>
       </div>
 
